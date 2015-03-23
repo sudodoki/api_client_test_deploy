@@ -1,0 +1,23 @@
+# API v2 runner script
+
+description "node.js server"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+script
+    export HOME="/home/deploy"
+    echo $$ > /var/run/<%= package.name %>.pid
+    exec sudo -u deploy NODE_ENV=production /usr/local/bin/node <%= deployTo %>/current/<%= subfolder %>/index.js >> <%= deployTo %>/logs/<%= package.name %>.sys.log 2>&1
+end script
+
+pre-start script
+    mkdir -p <%= deployTo %>/logs/
+    # Date format same as (new Date()).toISOString() for consistency
+    echo "[`date -u +%Y-%m-%dT%T.%3NZ`] (sys) Starting" <%= deployTo %>/logs/<%= package.name %>.sys.log
+end script
+
+pre-stop script
+    rm /var/run/<%= package.name %>.pid
+    echo "[`date -u +%Y-%m-%dT%T.%3NZ`] (sys) Stopping" >> <%= deployTo %>/logs/<%= package.name %>.sys.log
+end script

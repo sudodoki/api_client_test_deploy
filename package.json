@@ -1,0 +1,22 @@
+{
+  "name": "api_client_test_deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pwd": "shipit staging pwd",
+    "deploy": "shipit staging deploy",
+    "rollback": "shipit staging rollback"
+  },
+  "keywords": [],
+  "author": "sudodoki <smd.deluzion@gmail.com> (sudodoki.name)",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.5.0",
+    "shipit-cli": "^1.2.1",
+    "shipit-deploy": "^1.1.1",
+    "shipit-npm": "git://github.com/sudodoki/shipit-npm.git#master",
+    "shipit-shared": "^2.0.3",
+    "shipit-utils": "^1.2.0"
+  }
+}
